@@ -43,6 +43,7 @@ const Player = function Player() {
     this.y_step = 83;
 }
 
+
 Player.prototype.resetPostion = function () {
     this.x = 303;
     this.y = 404;
@@ -52,6 +53,23 @@ Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+Player.prototype.handleInput = function (direction) {
+    switch (direction) {
+        case 'left':
+            this.x >= this.x_step ? this.x -= this.x_step : this.x -= 0;
+            break;
+
+        case 'right':
+            this.x >= this.x_step ? this.x += this.x_step : this.x += 0;
+            break;
+
+            
+        default:
+    }
+
+
+
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -71,3 +89,5 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
