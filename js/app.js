@@ -46,14 +46,14 @@ Enemy.prototype.render = function() {
 const Player = function Player() {
 
     this.sprite = "images/char-boy.png";
-    this.x = 303;
+    this.x = 202;
     this.y = 404;
     this.x_step = 101;
     this.y_step = 83;
 }
 
 Player.prototype.resetPostion = function () {
-    this.x = 303;
+    this.x = 202;
     this.y = 404;
 };
 
@@ -66,17 +66,19 @@ Player.prototype.handleInput = function (direction) {
         case 'left':
             this.x >= this.x_step ? this.x -= this.x_step : this.x -= 0;
             break;
-
         case 'right':
-            this.x <= (this.x_step * 5) ? this.x += this.x_step : this.x += 0;
+            this.x <= (this.x_step * 3) ? this.x += this.x_step : this.x += 0;
             break;
-
         case 'up':
             this.y -= this.y_step;
-            this.resetPostion
+            if (this.y === -11) {
+                player.resetPostion();
+                console.log('reset postion')
+            }
             break;
         case 'down':
             this.y <= (this.y_step * 4) ? this.y += this.y_step : this.y += 0;
+            
             break;
     }
 
