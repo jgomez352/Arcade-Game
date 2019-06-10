@@ -28,6 +28,37 @@ var Engine = (function (global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    /*
+     * This part will add html in refrence to winning the game
+     */
+    const fragment = document.createDocumentFragment();
+    const div = document.createElement('div');
+    let htmlText = `
+<h5>My Arcade Game</h5>
+        <!-- Modal -->
+            <div class="modal fade" id="WinModal" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="ModalLongTitle">You Win!!</h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+    div.className = 'container';
+    div.innerHTML = htmlText;
+    fragment.appendChild(div);
+    document.body.appendChild(fragment);
+
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -178,5 +209,7 @@ var Engine = (function (global) {
      * from within their app.js files.
      */
     global.ctx = ctx;
+
+   
 })(this);
 

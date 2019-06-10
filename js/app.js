@@ -62,25 +62,30 @@ Player.prototype.render = function () {
 };
 
 Player.prototype.handleInput = function (direction) {
-    switch (direction) {
-        case 'left':
-            this.x >= this.x_step ? this.x -= this.x_step : this.x -= 0;
-            break;
-        case 'right':
-            this.x <= (this.x_step * 3) ? this.x += this.x_step : this.x += 0;
-            break;
-        case 'up':
-            this.y -= this.y_step;
-            if (this.y === -11) {
-                player.resetPostion();
-                console.log('reset postion')
-            }
-            break;
-        case 'down':
-            this.y <= (this.y_step * 4) ? this.y += this.y_step : this.y += 0;
-            
-            break;
+
+    if (document.getElementById("WinModal").className != "modal fade show") {
+        switch (direction) {
+            case 'left':
+                this.x >= this.x_step ? this.x -= this.x_step : this.x -= 0;
+                break;
+            case 'right':
+                this.x <= (this.x_step * 3) ? this.x += this.x_step : this.x += 0;
+                break;
+            case 'up':
+                this.y -= this.y_step;
+                if (this.y === -11) {
+                    player.resetPostion();
+                    console.log('reset postion')
+                    winner();
+                }
+                break;
+            case 'down':
+                this.y <= (this.y_step * 4) ? this.y += this.y_step : this.y += 0;
+
+                break;
+        }
     }
+    
 };
 
 // Now instantiate your objects.
@@ -109,3 +114,9 @@ document.addEventListener('keyup', function(e) {
         player.handleInput(allowedKeys[e.keyCode]);
     }
 });
+
+//Handles winning
+function winner() {
+    let modalItem = document.querySelector('.modal-body');
+    $('#WinModal').modal('toggle');
+};
