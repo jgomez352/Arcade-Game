@@ -14,10 +14,6 @@
  */
 
 var Engine = (function (global) {
-
-   
-
-
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas element's height/width and add it to the DOM.
@@ -44,7 +40,6 @@ var Engine = (function (global) {
          */
         var now = Date.now(),
             dt = (now - lastTime) / 1000.0;
-
         /* Call our update/render functions, pass along the time delta to
          * our update function since it may be used for smooth animation.
          */
@@ -55,13 +50,11 @@ var Engine = (function (global) {
          * for the next time this function is called.
          */
         lastTime = now;
-
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
         win.requestAnimationFrame(main);
     }
-
     /* This function does some initial setup that should only occur once,
      * particularly setting the lastTime variable that is required for the
      * game loop.
@@ -82,7 +75,7 @@ var Engine = (function (global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        //updateEntities(dt);
+        updateEntities(dt);
         // checkCollisions();
     }
 
@@ -141,7 +134,7 @@ var Engine = (function (global) {
             }
         }
 
-       // renderEntities();
+       renderEntities();
     }
 
     /* This function is called by the render function and is called on each game
