@@ -81,9 +81,6 @@ Player.prototype.handleInput = function (direction) {
             
             break;
     }
-
-
-
 };
 
 // Now instantiate your objects.
