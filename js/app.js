@@ -23,6 +23,15 @@ Enemy.prototype.update = function(dt) {
         var newSpeed = Math.floor(Math.random() * 4 + 1);
         this.speed = 80 * newSpeed;
     }
+    let enemyMaxLeftX = this.x - 70;
+    let enemyMaxRightX = this.x + 70;
+    let enemyMaxTopY = this.y - 60;
+    let enemyMaxBottomY = this.y + 60;
+
+    if (player.x > enemyMaxLeftX && player.x < enemyMaxRightX && player.y > enemyMaxTopY && player.y < enemyMaxBottomY) {
+        console.log("you have died!!!")
+        player.resetPostion();
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -43,7 +52,6 @@ const Player = function Player() {
     this.y_step = 83;
 }
 
-
 Player.prototype.resetPostion = function () {
     this.x = 303;
     this.y = 404;
@@ -60,11 +68,16 @@ Player.prototype.handleInput = function (direction) {
             break;
 
         case 'right':
-            this.x >= this.x_step ? this.x += this.x_step : this.x += 0;
+            this.x <= (this.x_step * 5) ? this.x += this.x_step : this.x += 0;
             break;
 
-            
-        default:
+        case 'up':
+            this.y -= this.y_step;
+            this.resetPostion
+            break;
+        case 'down':
+            this.y <= (this.y_step * 4) ? this.y += this.y_step : this.y += 0;
+            break;
     }
 
 
@@ -72,9 +85,16 @@ Player.prototype.handleInput = function (direction) {
 };
 
 // Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 
+let enemy0 = new Enemy(-80, 60 + 80 * 0, (Math.floor(Math.random() * 4 + 1) * 60));
+let enemy1 = new Enemy(-80, 60 + 80 * 1, (Math.floor(Math.random() * 4 + 1) * 60));
+let enemy2 = new Enemy(-80, 60 + 80 * 2, (Math.floor(Math.random() * 4 + 1) * 60));
+
+// Place all enemy objects in an array called allEnemies
+window.allEnemies = [enemy0, enemy1, enemy2];
+
+// Place the player object in a variable called player
+window.player = new Player();
 
 
 // This listens for key presses and sends the keys to your
@@ -86,8 +106,7 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
-    player.handleInput(allowedKeys[e.keyCode]);
+    if (allowedKeys[e.keyCode]) {
+        player.handleInput(allowedKeys[e.keyCode]);
+    }
 });
-
-
