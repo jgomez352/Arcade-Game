@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function Enemy(x, y, s) {
+let Enemy = function Enemy(x, y, s) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -20,7 +20,7 @@ Enemy.prototype.update = function(dt) {
     this.x += this.speed * dt;
     if (this.x > 707) {
         this.x = -100;
-        var newSpeed = Math.floor(Math.random() * 4 + 1);
+        let newSpeed = Math.floor(Math.random() * 4 + 1);
         this.speed = 80 * newSpeed;
     }
     let enemyMaxLeftX = this.x - 70;
@@ -73,11 +73,6 @@ Player.prototype.handleInput = function (direction) {
                 break;
             case 'up':
                 this.y -= this.y_step;
-                if (this.y === -11) {
-                    player.resetPostion();
-                    console.log('reset postion')
-                    winner();
-                }
                 break;
             case 'down':
                 this.y <= (this.y_step * 4) ? this.y += this.y_step : this.y += 0;
@@ -85,7 +80,11 @@ Player.prototype.handleInput = function (direction) {
                 break;
         }
     }
-    
+    if (this.y === -11) {
+        this.resetPostion();
+        console.log('reset postion')
+        winner();
+    }
 };
 
 // Now instantiate your objects.
@@ -95,16 +94,16 @@ let enemy1 = new Enemy(-80, 60 + 80 * 1, (Math.floor(Math.random() * 4 + 1) * 60
 let enemy2 = new Enemy(-80, 60 + 80 * 2, (Math.floor(Math.random() * 4 + 1) * 60));
 
 // Place all enemy objects in an array called allEnemies
-window.allEnemies = [enemy0, enemy1, enemy2];
+allEnemies = [enemy0, enemy1, enemy2];
 
 // Place the player object in a variable called player
-window.player = new Player();
+player = new Player();
 
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
+    let allowedKeys = {
         37: 'left',
         38: 'up',
         39: 'right',

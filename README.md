@@ -23,6 +23,7 @@ The objective of the game is to make it to the water.
 ### Important Functions
 1. Enemy.prototype.update:  This function handles not only enemy location but it handles impact with player.
 2. Player.prototype.handleInput:  This function handles inputs and resets player when needed.  Great place to add additional behaviors.
+3. This game can be ran on your favorite browser.  First download the entire file then right click on index.html and select "Open with", followed by your choice of browser.
 
 
 
